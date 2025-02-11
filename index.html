@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hy1Fly's Blog</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('Font.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            font-family: 'CustomFont', 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #007acc;
+            color: #fff;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border-radius: 0 0 15px 15px;
+        }
+        header button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            color: #007acc;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+        h1, h2 {
+            margin-top: 0;
+        }
+        .link {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .link img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .link a {
+            text-decoration: none;
+            color: #007acc;
+            font-size: 1.2em;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+        .link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="blogTitle">Hy1Fly's Blog</h1>
+        <button id="langButton" onclick="toggleLanguage()">中文</button>
+    </header>
+    <main>
+        <h2 id="aboutTitle">About Me</h2>
+        <p id="aboutContent">Welcome to my blog! Here are some of my projects and personal links.</p>
+        <h2 id="projectsTitle">My Projects</h2>
+        <div class="link">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+            <a href="https://hy1fly.github.io/YF-Cloud/" target="_blank" id="projectLink">YF-Cloud</a>
+        </div>
+        <h2 id="linksTitle">My Links</h2>
+        <div class="link">
+            <img src="https://img.icons8.com/color/48/000000/bilibili.png" alt="Bilibili">
+            <a href="https://space.bilibili.com/3493113261721792" target="_blank" id="bilibiliLink">Bilibili Profile</a>
+        </div>
+        <div class="link">
+            <img src="https://img.icons8.com/color/48/000000/qq.png" alt="QQ">
+            <a href="https://qm.qq.com/q/PpbbVHsfS2" target="_blank" id="qqGroupLink">QQ Fan Group</a>
+        </div>
+        <div class="link">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+            <a href="https://github.com/Hy1Fly" target="_blank" id="githubLink">GitHub Profile</a>
+        </div>
+    </main>
+    <script>
+        const translations = {
+            en: {
+                blogTitle: "Hy1Fly's Blog",
+                aboutTitle: "About Me",
+                aboutContent: "Welcome to my blog! Here are some of my projects and personal links.",
+                projectsTitle: "My Projects",
+                projectLink: "YF-Cloud",
+                linksTitle: "My Links",
+                bilibiliLink: "Bilibili Profile",
+                qqGroupLink: "QQ Fan Group",
+                githubLink: "GitHub Profile",
+                langButton: "中文"
+            },
+            zh: {
+                blogTitle: "Hy1Fly的博客",
+                aboutTitle: "关于我",
+                aboutContent: "欢迎来到我的博客！这里记录了我的一些项目和个人链接。",
+                projectsTitle: "我的项目",
+                projectLink: "YF-Cloud",
+                linksTitle: "我的链接",
+                bilibiliLink: "哔哩哔哩主页",
+                qqGroupLink: "QQ粉丝群",
+                githubLink: "GitHub主页",
+                langButton: "English"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            const elements = document.querySelectorAll('#blogTitle, #aboutTitle, #aboutContent, #projectsTitle, #projectLink, #linksTitle, #bilibiliLink, #qqGroupLink, #githubLink, #langButton');
+            elements.forEach(element => {
+                element.textContent = translations[currentLang][element.id];
+            });
+        }
+    </script>
+</body>
+</html>
