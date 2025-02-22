@@ -11,24 +11,40 @@
             font-weight: normal;
             font-style: normal;
         }
-        
+
+        :root {
+            --background-color-light: #f4f4f4;
+            --background-color-dark: #333;
+            --text-color-light: #000;
+            --text-color-dark: #fff;
+            --header-background-light: #007acc;
+            --header-background-dark: #005f99;
+            --main-background-light: #fff;
+            --main-background-dark: #444;
+            --main-box-shadow-light: rgba(0, 0, 0, 0.1);
+            --main-box-shadow-dark: rgba(0, 0, 0, 0.2);
+        }
+
         body {
             font-family: 'CustomFont', 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: var(--background-color-light);
+            color: var(--text-color-light);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.5s, color 0.5s;
         }
         header {
-            background-color: #007acc;
-            color: #fff;
+            background-color: var(--header-background-light);
+            color: var(--text-color-dark);
             padding: 20px;
             width: 100%;
             text-align: center;
             position: relative;
             border-radius: 0 0 15px 15px;
+            transition: background-color 0.5s;
         }
         header button {
             position: absolute;
@@ -46,10 +62,11 @@
             max-width: 800px;
             width: 100%;
             margin: 20px;
-            background-color: #fff;
+            background-color: var(--main-background-light);
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px var(--main-box-shadow-light);
             border-radius: 15px;
+            transition: background-color 0.5s, box-shadow 0.5s;
         }
         h1, h2 {
             margin-top: 0;
@@ -79,11 +96,24 @@
             transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .dark-mode {
+            --background-color-light: #333;
+            --background-color-dark: #f4f4f4;
+            --text-color-light: #fff;
+            --text-color-dark: #000;
+            --header-background-light: #005f99;
+            --header-background-dark: #007acc;
+            --main-background-light: #444;
+            --main-background-dark: #fff;
+            --main-box-shadow-light: rgba(0, 0, 0, 0.2);
+            --main-box-shadow-dark: rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
     <header>
         <h1 id="blogTitle">Hy1Fly's Blog</h1>
+        <button id="modeButton" onclick="toggleMode()">Dark Mode</button>
         <button id="langButton" onclick="toggleLanguage()">中文</button>
     </header>
     <main>
@@ -144,6 +174,12 @@
             elements.forEach(element => {
                 element.textContent = translations[currentLang][element.id];
             });
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            const modeButton = document.getElementById('modeButton');
+            modeButton.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
         }
     </script>
 </body>
