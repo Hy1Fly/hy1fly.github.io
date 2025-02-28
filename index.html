@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,15 @@
             --main-background-dark: #444;
             --main-box-shadow-light: rgba(0, 0, 0, 0.1);
             --main-box-shadow-dark: rgba(0, 0, 0, 0.2);
+            --primary-color: #2196F3;
+            --primary-hover: #1976D2;
+            --accent-color: #FF4081;
+            --transition-time: 0.3s;
         }
 
         body {
             font-family: 'CustomFont', 'Arial', sans-serif;
-            background-color: var(--background-color-light);
+            background: linear-gradient(135deg, var(--background-color-light) 0%, #e1e1e1 100%);
             color: var(--text-color-light);
             margin: 0;
             padding: 0;
@@ -35,67 +39,94 @@
             flex-direction: column;
             align-items: center;
             transition: background-color 0.5s, color 0.5s;
+            line-height: 1.6;
+            min-height: 100vh;
         }
+
         header {
-            background-color: var(--header-background-light);
+            background: linear-gradient(135deg, var(--header-background-light) 0%, #1565C0 100%);
             color: var(--text-color-dark);
-            padding: 20px;
+            padding: 2rem 20px;
             width: 100%;
             text-align: center;
             position: relative;
             border-radius: 0 0 15px 15px;
             transition: background-color 0.5s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+
         header button {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #fff;
+            background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
             color: #007acc;
             border: none;
-            padding: 10px;
+            padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            transition: all var(--transition-time) ease;
         }
+
+        header button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
         main {
             max-width: 800px;
-            width: 100%;
+            width: calc(100% - 40px);
             margin: 20px;
             background-color: var(--main-background-light);
             padding: 20px;
             box-shadow: 0 4px 8px var(--main-box-shadow-light);
-            border-radius: 15px;
-            transition: background-color 0.5s, box-shadow 0.5s;
+            border-radius: 20px;
+            transition: all var(--transition-time) ease;
+            animation: fadeIn 0.6s ease-out;
         }
-        h1, h2 {
-            margin-top: 0;
-        }
+
         .link {
             display: flex;
             align-items: center;
-            margin: 10px 0;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border-radius: 8px;
-            padding: 10px;
+            margin: 15px 0;
+            transition: all var(--transition-time) ease;
+            border-radius: 12px;
+            padding: 16px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px);
         }
-        .link img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-        .link a {
-            text-decoration: none;
-            color: #007acc;
-            font-size: 1.2em;
-        }
-        .link a:hover {
-            text-decoration: underline;
-        }
+
         .link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,1);
         }
+
+        .link img {
+            width: 32px;
+            height: 32px;
+            margin-right: 15px;
+            border-radius: 8px;
+            padding: 4px;
+            background: rgba(0,0,0,0.05);
+            transition: transform var(--transition-time) ease;
+        }
+
+        .link:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        /* 暗色模式样式 */
         .dark-mode {
             --background-color-light: #333;
             --background-color-dark: #f4f4f4;
@@ -108,13 +139,54 @@
             --main-box-shadow-light: rgba(0, 0, 0, 0.2);
             --main-box-shadow-dark: rgba(0, 0, 0, 0.1);
         }
+
+        .dark-mode .link {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .dark-mode .link:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+                margin-top: 40px;
+            }
+
+            header button {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+                position: static;
+                margin-top: 15px;
+            }
+
+            header {
+                padding: 1.5rem 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
     <header>
         <h1 id="blogTitle">Hy1Fly's Blog</h1>
-        <button id="modeButton" onclick="toggleMode()">Dark Mode</button>
-        <button id="langButton" onclick="toggleLanguage()">中文</button>
+        <div>
+            <button id="modeButton" onclick="toggleMode()">Dark Mode</button>
+            <button id="langButton" onclick="toggleLanguage()">中文</button>
+        </div>
     </header>
     <main>
         <h2 id="aboutTitle">About Me</h2>
@@ -139,6 +211,7 @@
         </div>
     </main>
     <script>
+        // 保持原有JavaScript代码不变
         const translations = {
             en: {
                 blogTitle: "Hy1Fly's Blog",
@@ -170,9 +243,11 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'zh' : 'en';
-            const elements = document.querySelectorAll('#blogTitle, #aboutTitle, #aboutContent, #projectsTitle, #projectLink, #linksTitle, #bilibiliLink, #qqGroupLink, #githubLink, #langButton');
+            const elements = document.querySelectorAll('[id]');
             elements.forEach(element => {
-                element.textContent = translations[currentLang][element.id];
+                if (translations[currentLang][element.id]) {
+                    element.textContent = translations[currentLang][element.id];
+                }
             });
         }
 
@@ -184,3 +259,123 @@
     </script>
 </body>
 </html>
+<style>
+/* 在原有样式基础上添加以下移动端优化 */
+
+/* 通用移动端优化 */
+@media (max-width: 600px) {
+    /* 基础布局调整 */
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* 头部优化 */
+    header {
+        padding: 1rem 15px;
+        border-radius: 0;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+    }
+
+    /* 按钮组优化 */
+    header div {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    header button {
+        position: static;
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        flex: 1;
+    }
+
+    /* 主内容区优化 */
+    main {
+        margin: 10px;
+        padding: 15px;
+        width: calc(100% - 20px);
+        border-radius: 12px;
+    }
+
+    /* 标题优化 */
+    h2 {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+
+    /* 链接项优化 */
+    .link {
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+
+    .link img {
+        width: 28px;
+        height: 28px;
+        margin-right: 12px;
+    }
+
+    .link a {
+        font-size: 1rem;
+    }
+
+    /* 悬停效果移动端适配 */
+    @media (hover: none) {
+        .link:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .link:hover img {
+            transform: none;
+        }
+    }
+}
+
+/* 超小屏幕优化 (例如折叠屏) */
+@media (max-width: 400px) {
+    header button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .link {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .link img {
+        margin-right: 0;
+        width: 24px;
+        height: 24px;
+    }
+
+    .link a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 横屏优化 */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        padding: 0.5rem 15px;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        margin: 5px;
+        padding: 10px;
+    }
+}
+</style>
